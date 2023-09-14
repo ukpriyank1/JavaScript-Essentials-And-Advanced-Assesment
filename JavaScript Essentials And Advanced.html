@@ -65,22 +65,24 @@
     </style>
 </head>
 <body>
-    <!-- start container -->
+
     <div id="container">
 
         <div class="input_box">
             <input type="text" id="input_text">
             <input type="submit" value="Add"  id="ctn" onclick="addList()">
-             
         </div>
+        <!--  input box end  -->
 
         <ul id="tasks">
           
         </ul>
-        <!-- list of work start  -->
+        <!-- list of tasks start  -->
     </div>
+    <!-- end container -->
 
     <script>
+
         let input = document.querySelector("#input_text");
         let addBtn = document.querySelector("#ctn");
         let addTask = document.querySelector("#tasks")
@@ -95,38 +97,34 @@
                 li.innerHTML = input.value;
                 addTask.appendChild(li);
                 li.style.backgroundColor = '#ffffff';
-            li.style.color =  "grey";
-            li.style.listStyle =  "none";
-            li.style.padding = "10px";
-            li.style.fontSize = "16px";
-            li.style.textTransform = "uppercase";
-            li.style.cursor = "pointer";
-            li.style.width = "370px";
-            li.style.borderBottom = "1px solid silver";
+                li.style.color =  "grey";
+                li.style.listStyle =  "none";
+                li.style.padding = "10px";
+                li.style.fontSize = "16px";
+                li.style.textTransform = "uppercase";
+                li.style.cursor = "pointer";
+                li.style.width = "370px";
+                li.style.borderBottom = "1px solid silver";
 
-
-             // add function to click clear task
-        li.addEventListener('click', function(){
-                li.style.textDecoration = "line-through";
-                saveData();
-            });
+// use of eventListner for storing data
+// add function to click clear task
+            li.addEventListener('click', function(){
+                    li.style.textDecoration = "line-through";
+                    saveData();
+                });
            
 
-// add function to double click remove task 
+ // add function to double click remove task 
             li.addEventListener('dblclick', function(){
                  addTask.removeChild(li);
                  saveData();
                  });
-                 
             }
             input.value = '';
             saveData();
-
-            
         }
 
-       
-
+ //use of  data store use cookies concepts
         function saveData() {
             localStorage.setItem("data", addTask.innerHTML);
         }
@@ -136,45 +134,6 @@
         }
         showTask() 
 
-
-        
-
-            //   addBtn.addEventListener('click', function (){
-
-            // let paragraph = document.createElement('li');
-            // paragraph.style.backgroundColor = '#ffffff';
-            // paragraph.style.color =  "grey";
-            // paragraph.style.listStyle =  "none";
-            // paragraph.style.fontSize =  "16px";
-            // paragraph.style.textTransform =  "capitalize ";
-            // paragraph.style.padding =  "10px ";
-            // paragraph.style.width =  "370px ";
-            // paragraph.style.borderBottom =  "1px solid silver ";
-            // paragraph.style.cursor =  "pointer ";
-
-            // paragraph.innerText = input.value;
-            // addTask.appendChild(paragraph);
-
-           
-
-        //     input.value = "";
-            
-        //     paragraph.addEventListener('click', function(){
-        //         paragraph.style.textDecoration = "line-through";
-        //     });
-
-        //     paragraph.addEventListener('dblclick', function(){
-        //         addTask.removeChild(paragraph);
-        //     });
-        //     document.createElement('li').remove()
-        // });
-         
-
-        
-        
-
-    
-        
     </script>
 </body>
 </html>
