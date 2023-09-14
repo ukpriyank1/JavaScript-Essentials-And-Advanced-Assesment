@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create new list item and add to DOM</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            border: 0;
+            outline: 0;
+            border-radius: 5px;
+        }
+
+        body {
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #container {
+            width: 40%;
+            height: 50vh;
+            background-color: rgba(0, 15, 25, 0.8);
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #input_text {
+            height: 40px;
+            width: 300px;
+            padding: 10px;
+            font-size: 15px;
+        }
+
+        #ctn {
+            padding: 10px 20px;
+            background-color: burlywood;
+            color: #584936;
+            font-size: 17px;
+            cursor: pointer;
+        }
+
+        #ctn:hover {
+            background-color: #c2955c;
+
+        }
+
+        ul {
+            width: 60%;
+            margin-top: 3%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+    </style>
+</head>
+<body>
+    <!-- start container -->
+    <div id="container">
+
+        <div class="input_box">
+            <input type="text" id="input_text">
+            <input type="submit" value="Add"  id="ctn" onclick="addList()">
+             
+        </div>
+
+        <ul id="tasks">
+          
+        </ul>
+        <!-- list of work start  -->
+    </div>
+
+    <script>
+        let input = document.querySelector("#input_text");
+        let addBtn = document.querySelector("#ctn");
+        let addTask = document.querySelector("#tasks")
+
+
+        function addList () {
+            if(input.value === '') {
+                alert("You must write something")
+            }
+            else {
+                let li = document.createElement("li");
+                li.innerHTML = input.value;
+                addTask.appendChild(li);
+                li.style.backgroundColor = '#ffffff';
+            li.style.color =  "grey";
+            li.style.listStyle =  "none";
+            li.style.padding = "10px";
+            li.style.fontSize = "16px";
+            li.style.textTransform = "uppercase";
+            li.style.cursor = "pointer";
+            li.style.width = "370px";
+            li.style.borderBottom = "1px solid silver";
+
+
+             // add function to click clear task
+        li.addEventListener('click', function(){
+                li.style.textDecoration = "line-through";
+                saveData();
+            });
+           
+
+// add function to double click remove task 
+            li.addEventListener('dblclick', function(){
+                 addTask.removeChild(li);
+                 saveData();
+                 });
+                 
+            }
+            input.value = '';
+            saveData();
+
+            
+        }
+
+       
+
+        function saveData() {
+            localStorage.setItem("data", addTask.innerHTML);
+        }
+
+        function showTask() {
+            addTask.innerHTML = localStorage.getItem("data");
+        }
+        showTask() 
+
+
+        
+
+            //   addBtn.addEventListener('click', function (){
+
+            // let paragraph = document.createElement('li');
+            // paragraph.style.backgroundColor = '#ffffff';
+            // paragraph.style.color =  "grey";
+            // paragraph.style.listStyle =  "none";
+            // paragraph.style.fontSize =  "16px";
+            // paragraph.style.textTransform =  "capitalize ";
+            // paragraph.style.padding =  "10px ";
+            // paragraph.style.width =  "370px ";
+            // paragraph.style.borderBottom =  "1px solid silver ";
+            // paragraph.style.cursor =  "pointer ";
+
+            // paragraph.innerText = input.value;
+            // addTask.appendChild(paragraph);
+
+           
+
+        //     input.value = "";
+            
+        //     paragraph.addEventListener('click', function(){
+        //         paragraph.style.textDecoration = "line-through";
+        //     });
+
+        //     paragraph.addEventListener('dblclick', function(){
+        //         addTask.removeChild(paragraph);
+        //     });
+        //     document.createElement('li').remove()
+        // });
+         
+
+        
+        
+
+    
+        
+    </script>
+</body>
+</html>
